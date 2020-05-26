@@ -9,11 +9,14 @@ public class Lieferant extends Thread {
     }
     public void anliefern(int anzahl){
         int bestand = l.getBestand() ;
-        System. out.print (getName () + "Bestand alt: " + bestand ) ;
+        System. out.println(getName () + " Bestand alt: " + bestand ) ;
         System.out.println( "Liefermenge: " + anzahl) ;
         l.setBestand(bestand + anzahl ) ;
     }
     public void run(){
-        anliefern (10) ;
+        synchronized (this){
+            anliefern (10);
+        }
+
     }
 }
